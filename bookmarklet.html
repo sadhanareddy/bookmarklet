@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   	<title>Web Page Transformation Tool</title>
+   	<meta charset="utf-8">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   	<style type="text/css">
+  	
+	  	body{
+	  		background-color: black;
+	  	}
+
+	  	.jumbotron{
+	  		background-color: #162252
+	  	}
+
+	  	h1, #tag{
+	  		color: white !important;
+	  		font-family: "Times New Roman", Georgia, Serif;
+	  	}
+
+	  	#instruction{
+	  		color: white !important;
+	  		font-size: 200%;
+	  		font-family: "Times New Roman", Georgia, Serif;
+	  	}
+
+	  	.js-link{
+  		    background:orange;
+	        color: black;
+	        display: box;
+	        padding:5px;
+	        text-decoration:none;
+	        font-weight:bold;
+	  	}
+
+   	</style>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>Web Page Transformation Tool</h1>      
+    <p id="tag">Tool to transform the web pages</p>
+  </div>
+
+  <div class="row">
+  	<div class="col-sm-12">
+  		<p id="instruction">Drag this link to the bookmarks tool bar</p>
+ 		<ul style="display: inline;">
+  		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/613b9ca1b2c7ed1cc66e18a10a826990ea0c89b2/switch_css.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())">Switch Css
+		</a></li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/61ae9c9aad6604fcabb2aed14ef49c2af8898eab/disable_css.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Page Without Css</a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/c2c09fd0835ec2f9a2645ff5cafd2bc98e1450cf/lang_translation.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Language Translation </a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/ae12a74983e10654d942cd8b6c6d5b116c13e9d7/phonetics.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Phonetics Translation</a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/0ed432627ed1ef6bf8ac2b802407a203d2f036ef/modify_content.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Modify Content </a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/db89a187a6f812d8b85ec719fddf30641f8c991b/webpage_stripper.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Web page Stripper </a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/15beefea39e351c856aeb4cf8d55f0af45ed8fde/zapper.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> Zapper</a>
+		</li><br/>
+
+		<li><a class="js-link" href="javascript:(function(){if (!($ = window.jQuery)){
+			    script = document.createElement('script');
+			   	script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'; 
+			    script.onload= transform_tool;
+			    document.getElementsByTagName('head')[0].appendChild(script);}
+				else{transformTool();} 
+				function transformTool(){
+					script = document.createElement('script');
+					script.src='//cdn.rawgit.com/renarration-studio/webpage-transformation/d58bdc4919b67655fb5133482891811ffa85fa49/blindusers_view.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}}())"> BlindUsersView</a>
+		</li><br/>
+		</ul>
+  	</div>
+  </div>
+</div>
+
+</body>
+</html>
