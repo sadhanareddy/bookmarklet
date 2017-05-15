@@ -10,11 +10,11 @@ function annoletContainer(){
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
     //using rawgit.com MaxCDN.. files directly linked to git repo 'webpage-transformation/master'
-    linktag.href = "https://cdn.rawgit.com/sadhanareddy/nptel/128ed074/sample.css"; 
+    linktag.href = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/page_renarration.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
     
     //injecting html code
-    container.innerHTML = "<h4 id='annolet-header'>Page Renarration Experiments...!</h4>"+
+    container.innerHTML = "<h4 id='annolet-header'>Page Renarration...!</h4>"+
     "<ul id='annolet-menu' >"+
         "<li id='disable-css' class='annolet-element'>No CSS</li>"+
         "<li id='zapper' class='annolet-element' >Zapper</li>"+
@@ -195,9 +195,9 @@ function alternateStylesheets(){
     //appending a CSS alternate stylesheets to head element of a webpage.
     var i= 0;
     var style_sheets = 3; 
-    var css_themes =['https://cdn.rawgit.com/renarration-studio/webpage-transformation-tool/07d57c73/css/switch1.css',
-    'https://cdn.rawgit.com/renarration-studio/webpage-transformation-tool/44118cb4/css/switch2.css',
-    'https://cdn.rawgit.com/renarration-studio/webpage-transformation/95f11312/css/switch3.css'];
+    var css_themes =['https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch1.css',
+    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch2.css',
+    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch3.css'];
     var link_title =['switch1', 'switch2', 'switch3'];
 
     for(i=0; i<style_sheets; i++){
