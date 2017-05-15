@@ -10,6 +10,7 @@ body{
   width: 80%;
   border-radius: 31px 31px 0px 0px;
   z-index: 99999999999;
+  margin-left:10%;
 }
 
 
@@ -32,7 +33,7 @@ body{
     display: inline-block;
     color: white;
     text-align: center;
-    padding: 10px 11px;
+    padding: 3px 11px;
     text-decoration: none;
     font-weight: bold;
     float: left;
