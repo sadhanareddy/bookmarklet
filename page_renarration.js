@@ -10,7 +10,7 @@ function annoletContainer(){
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
     //using rawgit.com MaxCDN.. files directly linked to git repo 'webpage-transformation/master'
-    linktag.href = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/page_renarration.css"; 
+    linktag.href = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/2b4fda52/css/page_renarration.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
     
     //injecting html code
@@ -19,7 +19,9 @@ function annoletContainer(){
         "<li id='disable-css' class='annolet-element'>No CSS</li>"+
         "<li id='zapper' class='annolet-element' >Zapper</li>"+
         "<li id='modify-content' class='annolet-element'>Modify Content</li>"+
-        "<li id='highlight-text' class='annolet-element' >Highlighter</li>"+
+        "<li id='highlight-text' class='annolet-element' >"+
+            "<button>Highlighter</button>"+
+        "</li>"+
         "<li id='phonetic-trans' class='annolet-element' >Phonetics</li>"+
         "<li id='trans-text' class='annolet-element' >Translate</li>"+
         "<li class='annolet-element'>"+
@@ -47,7 +49,7 @@ function annoletContainer(){
                 "<option id='increase-font' >Increase Font</option>"+
                 "<option id='decrease-font' >Decrease Font</option>"+
             "</select>"+"<br>"+
-            "<h6 style='color:orange;'>visibility</h6>"+
+            "<h6 style='color:orange;'>Visibility</h6>"+
         "</li>"+
     "</ul>";
 }
@@ -64,8 +66,17 @@ function disableLinks(){
 
 //Function to disable the css of a web page.
 function disableCss(){
-   for ( i=0; i<document.styleSheets.length; i++) {
-      document.styleSheets.item(i).disabled=true;
+    //alert("hello1");
+    var styleSheets = document.styleSheets;
+    for ( i=0; i<styleSheets.length; i++) {
+    //alert("hello2");
+        if(styleSheets[i].href == 'https://cdn.rawgit.com/sadhanareddy/bookmarklet/2b4fda52/css/page_renarration.css'){
+           styleSheets[i].disabled = false;
+           //alert("hello3");
+        }
+        else{
+            styleSheets[i].disabled = true;
+        }
    }
 }
 
@@ -76,7 +87,7 @@ function  Zapper(){
     $("body").click(function(event){
         console.log(event.target);
         targetElem= event.target;
-        if(targetElem.id == "annolet-container"||targetElem.id =="zapper"){
+        if(targetElem.id == "annolet-container"||targetElem.id =="zapper"||targetElem.id =="annolet-header"||targetElem.id =="annolet-menu"||targetElem.className == "annolet-element"){
             targetElem.style.visibility="visible";
         }
         else{
@@ -95,31 +106,21 @@ function modifyContent() {
 
 // Function to highlight selected text on a web page.
 function highlightContent(){
-    var mytext = selectHTML();
-    $('span').css({"background-color":"yellow"});
+    // var mytext = selectHTML();
+    // $('span').css({"background-color":"yellow"});
+    var userSelection = window.getSelection();
+    for(var i = 0; i < userSelection.rangeCount; i++) {
+        highlightRange(userSelection.getRangeAt(i));
+    }
 }
 
-function selectHTML() {
-    try 
-    {
-        if (window.ActiveXObject) {
-            var c = document.selection.createRange();
-            return c.htmlText;
-        }
-    
-        var nNd = document.createElement("span");
-        var w = getSelection().getRangeAt(0);
-        w.surroundContents(nNd);
-        return nNd.innerHTML;
-    } 
-    catch (e) 
-    {
-        if (window.ActiveXObject) {
-            return document.selection.createRange();
-        } else {
-            return getSelection();
-        }
-    }
+function highlightRange(range) {
+    var newNode = document.createElement("span");
+    newNode.setAttribute(
+       "style",
+       "background-color: yellow; display: inline;"
+    );
+    range.surroundContents(newNode);
 }
 
 // Function to translate the selected text to phonetics.
