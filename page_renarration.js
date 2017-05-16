@@ -10,7 +10,7 @@ function annoletContainer(){
     linktag.rel = "stylesheet";
     linktag.type = "text/css";
     //using rawgit.com MaxCDN.. files directly linked to git repo 'webpage-transformation/master'
-    linktag.href = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/2b4fda52/css/page_renarration.css"; 
+    linktag.href = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/page_renarration.css"; 
     document.getElementsByTagName('head')[0].appendChild(linktag);
     
     //injecting html code
@@ -41,7 +41,7 @@ function annoletContainer(){
             "<h6 style='color:orange;'>Webpage Stripper</h6>"+
         "</li>"+
         "<li class='annolet-element' id='lang-trans' >"+
-            // "<div id='google_translate_element' ></div>"+
+            "<div id='google_translate_element' ></div>"+
             "<h6 style='color:orange;'>Language</h6>"+
         "</li>"+
         "<li class='annolet-element'>"+
@@ -70,7 +70,7 @@ function disableCss(){
     var styleSheets = document.styleSheets;
     for ( i=0; i<styleSheets.length; i++) {
     //alert("hello2");
-        if(styleSheets[i].href == 'https://cdn.rawgit.com/sadhanareddy/bookmarklet/2b4fda52/css/page_renarration.css'){
+        if(styleSheets[i].href == 'https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/page_renarration.css'){
            styleSheets[i].disabled = false;
            //alert("hello3");
         }
@@ -106,8 +106,6 @@ function modifyContent() {
 
 // Function to highlight selected text on a web page.
 function highlightContent(){
-    // var mytext = selectHTML();
-    // $('span').css({"background-color":"yellow"});
     var userSelection = window.getSelection();
     for(var i = 0; i < userSelection.rangeCount; i++) {
         highlightRange(userSelection.getRangeAt(i));
@@ -150,53 +148,53 @@ function phoneticsTrans(){
     }, false);
 }
 
-// // Function to translate the selected text to an other language.
-// function translateText(){
-//     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
-//     keyAPI = "trnsl.1.1.20170315T015859Z.3e04bd9bd31f6f00.99aa35ddf89167a86f5a892014edf632e9cef14f";
+// Function to translate the selected text to an other language.
+function translateText(){
+    var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
+    keyAPI = "trnsl.1.1.20170315T015859Z.3e04bd9bd31f6f00.99aa35ddf89167a86f5a892014edf632e9cef14f";
 
-//     document.querySelector('#lang_translate').addEventListener('click', function() {
-//     var xhr = new XMLHttpRequest();
-//     // textAPI = document.querySelector('#source').value,
-//     var textAPI = "";
-//     if (window.getSelection) {
-//         textAPI = window.getSelection().toString();
-//     } 
-//     else if (document.selection && document.selection.type != "Control") {
-//         textAPI = document.selection.createRange().text;
-//     }
-//     alert(textAPI);
-//     langAPI = document.querySelector('#lang').value
-//     alert(langAPI)
-//     data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
-//     alert(data)
+    document.querySelector('#lang_translate').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    // textAPI = document.querySelector('#source').value,
+    var textAPI = "";
+    if (window.getSelection) {
+        textAPI = window.getSelection().toString();
+    } 
+    else if (document.selection && document.selection.type != "Control") {
+        textAPI = document.selection.createRange().text;
+    }
+    alert(textAPI);
+    langAPI = document.querySelector('#lang').value
+    alert(langAPI)
+    data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+    alert(data)
 
-//     xhr.open("POST",url,true);
-//     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//     xhr.send(data);
-//     xhr.onreadystatechange = function() {
-//             if (this.readyState==4 && this.status==200) {
-//                 var res = this.responseText;
-//                 alert(res);
-//                 var json = JSON.parse(res);
-//                 if(json.code == 200) {
-//                      document.querySelector('#textarea').innerHTML = json.text[0];
-//                      alert("selected");
-//                 }
-//                 else {
-//                     alert("select text");
-//                 }
-//             }
-//     }
-//     }, false);
-// }
+    xhr.open("POST",url,true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+            if (this.readyState==4 && this.status==200) {
+                var res = this.responseText;
+                alert(res);
+                var json = JSON.parse(res);
+                if(json.code == 200) {
+                     document.querySelector('#textarea').innerHTML = json.text[0];
+                     alert("selected");
+                }
+                else {
+                    alert("select text");
+                }
+            }
+    }
+    }, false);
+}
 
 // Creates alternate stylesheets to switch the themes on a web page.
 function alternateStylesheets(){
     //appending a CSS alternate stylesheets to head element of a webpage.
     var i= 0;
     var style_sheets = 3; 
-    var css_themes =['https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch1.css',
+    var css_themes =['https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch1.css_themes',
     'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch2.css',
     'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch3.css'];
     var link_title =['switch1', 'switch2', 'switch3'];
@@ -365,9 +363,9 @@ function addClickevents(){
     document.getElementById('show-images').addEventListener('click', function() {
         showImages()
     }, false);
-    // document.getElementById('lang-trans').addEventListener('click', function() {
-    //     langTrans()
-    // }, false);
+    document.getElementById('lang-trans').addEventListener('click', function() {
+        langTrans()
+    }, false);
 }
 
 
