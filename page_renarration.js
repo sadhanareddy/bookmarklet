@@ -66,20 +66,17 @@ function disableLinks(){
 
 //Function to disable the css of a web page.
 function disableCss(){
-    //alert("hello1");
+    alert("hello1");
     var styleSheets = document.styleSheets;
     for ( i=0; i<styleSheets.length; i++) {
-    //alert("hello2");
         if(styleSheets[i].href == 'https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/page_renarration.css'){
            styleSheets[i].disabled = false;
-           //alert("hello3");
         }
         else{
             styleSheets[i].disabled = true;
         }
    }
 }
-
 
 //Function to erase the content on a webpage.
 function  Zapper(){
@@ -121,82 +118,15 @@ function highlightRange(range) {
     range.surroundContents(newNode);
 }
 
-// Function to translate the selected text to phonetics.
-function phoneticsTrans(){
-    var url = "//localhost:5000/phonetic-trans"
-    document.querySelector('#phonetic').addEventListener('click', function() {
-    var xhr = new XMLHttpRequest();
-        if (window.getSelection) 
-        {
-            textAPI = window.getSelection().toString();
-        } 
-        else if (document.selection && document.selection.type != "Control") {
-            textAPI = document.selection.createRange().text;
-        }
-        alert(textAPI);
-        xhr.open("POST",url,true);
-        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        xhr.send(JSON.stringify({"sentence":textAPI}));
-        xhr.onreadystatechange = function() {
-            if (this.readyState==4 && this.status==200) {
-                var res = this.responseText;
-                alert(res);
-                document.querySelector('#textarea').innerHTML = res;
-            }
-        }
-    }, false);
-}
-
-// Function to translate the selected text to an other language.
-function translateText(){
-    var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
-    keyAPI = "trnsl.1.1.20170315T015859Z.3e04bd9bd31f6f00.99aa35ddf89167a86f5a892014edf632e9cef14f";
-
-    document.querySelector('#lang_translate').addEventListener('click', function() {
-    var xhr = new XMLHttpRequest();
-    // textAPI = document.querySelector('#source').value,
-    var textAPI = "";
-    if (window.getSelection) {
-        textAPI = window.getSelection().toString();
-    } 
-    else if (document.selection && document.selection.type != "Control") {
-        textAPI = document.selection.createRange().text;
-    }
-    alert(textAPI);
-    langAPI = document.querySelector('#lang').value
-    alert(langAPI)
-    data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
-    alert(data)
-
-    xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhr.send(data);
-    xhr.onreadystatechange = function() {
-            if (this.readyState==4 && this.status==200) {
-                var res = this.responseText;
-                alert(res);
-                var json = JSON.parse(res);
-                if(json.code == 200) {
-                     document.querySelector('#textarea').innerHTML = json.text[0];
-                     alert("selected");
-                }
-                else {
-                    alert("select text");
-                }
-            }
-    }
-    }, false);
-}
 
 // Creates alternate stylesheets to switch the themes on a web page.
 function alternateStylesheets(){
     //appending a CSS alternate stylesheets to head element of a webpage.
     var i= 0;
     var style_sheets = 3; 
-    var css_themes =['https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch1.css_themes',
-    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch2.css',
-    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/bdf740b5/css/switch3.css'];
+    var css_themes =['https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/switch1.css',
+    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/switch2.css',
+    'https://cdn.rawgit.com/sadhanareddy/bookmarklet/851a7eb1/css/switch3.css'];
     var link_title =['switch1', 'switch2', 'switch3'];
 
     for(i=0; i<style_sheets; i++){
@@ -223,6 +153,7 @@ function switchStyle(css_title)
     }
    }
 }
+
 
 /* Function loops through all the elements in a web page and displays elements which has text content
 and rest of the content is made hidden. */  
@@ -294,23 +225,24 @@ function showImages() {
 
 }
 
-// // injecting google translate api src into head element of a webpage.
-// (function langTrans(){
-//     //appending a script tag to head of webpage
-//     var script = document.createElement('script');
-//     script.type = "text/javascript";
-//     script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-//     document.getElementsByTagName('head')[0].appendChild(script);
 
-//     //Create a language translation dropdown div and append in annolet menu bar.
-//     div = document.createElement('div');
-//     div.id = 'google_translate_element';
-//     document.getElementById('lang-trans').appendChild(div);
-// }());
+// injecting google translate api src into head element of a webpage.
+function langTrans(){
+    //appending a script tag to head of webpage
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.getElementsByTagName('head')[0].appendChild(script);
+};
 
-// function googleTranslateElementInit() {
-//    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-// }
+function injectJs() {
+   //appending a script tag to head of webpage
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = "https://cdn.rawgit.com/sadhanareddy/bookmarklet/1863b683/langtrans.js";
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+
 
 // Function to increase/decrease the font size of the content.
 function changeFontsize(){
@@ -324,6 +256,75 @@ function changeFontsize(){
         $('body').css('font-size',fontSize+'px');
     })
 }
+
+// Function to translate the selected text to phonetics.
+function phoneticsTrans(){
+    var url = "//localhost:5000/phonetic-trans"
+    document.querySelector('#phonetic').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+        if (window.getSelection) 
+        {
+            textAPI = window.getSelection().toString();
+        } 
+        else if (document.selection && document.selection.type != "Control") {
+            textAPI = document.selection.createRange().text;
+        }
+        alert(textAPI);
+        xhr.open("POST",url,true);
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        xhr.send(JSON.stringify({"sentence":textAPI}));
+        xhr.onreadystatechange = function() {
+            if (this.readyState==4 && this.status==200) {
+                var res = this.responseText;
+                alert(res);
+                document.querySelector('#textarea').innerHTML = res;
+            }
+        }
+    }, false);
+}
+
+// Function to translate the selected text to an other language.
+function translateText(){
+    var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
+    keyAPI = "trnsl.1.1.20170315T015859Z.3e04bd9bd31f6f00.99aa35ddf89167a86f5a892014edf632e9cef14f";
+
+    document.querySelector('#lang_translate').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    // textAPI = document.querySelector('#source').value,
+    var textAPI = "";
+    if (window.getSelection) {
+        textAPI = window.getSelection().toString();
+    } 
+    else if (document.selection && document.selection.type != "Control") {
+        textAPI = document.selection.createRange().text;
+    }
+    alert(textAPI);
+    langAPI = document.querySelector('#lang').value
+    alert(langAPI)
+    data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+    alert(data)
+
+    xhr.open("POST",url,true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+            if (this.readyState==4 && this.status==200) {
+                var res = this.responseText;
+                alert(res);
+                var json = JSON.parse(res);
+                if(json.code == 200) {
+                     document.querySelector('#textarea').innerHTML = json.text[0];
+                     alert("selected");
+                }
+                else {
+                    alert("select text");
+                }
+            }
+    }
+    }, false);
+}
+
 
 // Function to add click events to the annolet elements.
 function addClickevents(){
@@ -339,12 +340,6 @@ function addClickevents(){
     document.getElementById('highlight-text').addEventListener('click', function() {
         highlightContent()
     }, false);
-    document.getElementById('phonetic-trans').addEventListener('click', function() {
-        phoneticsTrans()
-    }, false);
-    // document.getElementById('trans-text').addEventListener('click', function() {
-    //     translateText()
-    // }, false);
     document.getElementById('theme-1').addEventListener('click', function() {
         switchStyle('switch1')
     }, false);
@@ -354,7 +349,7 @@ function addClickevents(){
     document.getElementById('theme-3').addEventListener('click', function() {
         switchStyle('switch3')
     }, false);
-    document.getElementById('show-text').addEventListener('click', function() {
+     document.getElementById('show-text').addEventListener('click', function() {
         showText()
     }, false);
     document.getElementById('show-links').addEventListener('click', function() {
@@ -363,10 +358,14 @@ function addClickevents(){
     document.getElementById('show-images').addEventListener('click', function() {
         showImages()
     }, false);
-    document.getElementById('lang-trans').addEventListener('click', function() {
-        langTrans()
+    document.getElementById('phonetic-trans').addEventListener('click', function() {
+        phoneticsTrans()
+    }, false);
+    document.getElementById('trans-text').addEventListener('click', function() {
+       translateText()
     }, false);
 }
+
 
 
 window.onload = function() {
@@ -374,6 +373,7 @@ window.onload = function() {
     disableLinks()
     addClickevents()
     alternateStylesheets()
+    langTrans()
+    injectJs()
     changeFontsize()
 };
-
